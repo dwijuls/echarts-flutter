@@ -17,116 +17,72 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-final List<Items> imgList = [
-  Items(
-      img:
-          'https://drive.google.com/uc?export=view&id=1F5a5tIlnd4GVEwAQJLF0MGq76t3HwyVt',
-      title: 'Toyota Calya'),
-  Items(
-      img:
-          'https://drive.google.com/uc?export=view&id=1YAUhg6QDEcoTqC7zHhQhhh8SAO_IlzTc',
-      title: 'Toyota New Avanza'),
-  Items(
-      img:
-          'https://drive.google.com/uc?export=view&id=10EkGiwEsxdE8-6UnSBAPwyJA3cLfKTPG',
-      title: 'Toyota Raize'),
-];
-
 class _HomePageState extends State<HomePage> {
   ScreenUtil _dimens = ScreenUtil();
+  int _currentIndex = 0;
+  final CarouselController _controller = CarouselController();
+  bool _show = false;
 
-  final List<Widget> imageSliders = imgList
-      .map((item) => GestureDetector(
-    behavior: HitTestBehavior.opaque,
-            onTap: (){
-      Get.to(HomeDetailBanner(imgData: item.img!,title: item.title!,));
-            },
-            child: Container(
-              margin: EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      Image.network(item.img!,
-                          fit: BoxFit.cover, width: 1000.0),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(200, 0, 0, 0),
-                                Color.fromARGB(0, 0, 0, 0)
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          child: Text(
-                            '${item.title}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
-            ),
-          ))
-      .toList();
+  var dataObj = [
+    [
+      '2018-03-03',
+      '200000000',
+      'https://drive.google.com/uc?export=view&id=1UR8Z2f9suoM8SauZJruMVsxkbAGUWkns',
+      'Abu-abu',
+      '41513',
+      'DKI Jakarta'
+    ],
+    [
+      '2017-04-20',
+      '300000000',
+      'https://drive.google.com/uc?export=view&id=1UR8Z2f9suoM8SauZJruMVsxkbAGUWkns',
+      'Putih',
+      '23200',
+      'Bandung'
+    ],
+    [
+      '2017-02-02',
+      '335000000',
+      'https://drive.google.com/uc?export=view&id=1UR8Z2f9suoM8SauZJruMVsxkbAGUWkns',
+      'Silver',
+      '26520',
+      'DKI Jakarta'
+    ],
+    [
+      '2016-11-30',
+      '400000000',
+      'https://drive.google.com/uc?export=view&id=1UR8Z2f9suoM8SauZJruMVsxkbAGUWkns',
+      'Putih',
+      '12300',
+      'DKI Jakarta'
+    ],
+    [
+      '2015-01-31',
+      '500000000',
+      'https://drive.google.com/uc?export=view&id=1UR8Z2f9suoM8SauZJruMVsxkbAGUWkns',
+      'Hitam',
+      '1250',
+      'Surabaya'
+    ]
+  ];
 
-  List<Map<String, Object>> _data1 = [{ 'name': 'Please wait', 'value': 0 }];
+  getDatas() {
+    var axis = [];
+    dataObj.forEach((element) {
+      axis.add([element[0], element[1]]);
+    });
 
-  getData1() async {
-    await Future.delayed(Duration(seconds: 4));
-
-    const dataObj = [{
-      'price': '200000000',
-      'date': '2018-03-03',
-      'color': 'Abu-abu',
-      'km': '41513',
-      'location': 'DKI Jakarta'
-    }, {
-      'price': '300000000',
-      'date': '2017-04-20',
-      'color': 'Putih',
-      'km': '23200',
-      'location': 'Bandung'
-    }, {
-      'price': '335000000',
-      'date': '2017-02-02',
-      'color': 'Silver',
-      'km': '26520',
-      'location': 'DKI Jakarta'
-    }, {
-      'price': '400000000',
-      'date': '2016-11-30',
-      'color': 'Putih',
-      'km': '12300',
-      'location': 'DKI Jakarta'
-    }, {
-      'price': '500000000',
-      'date': '2015-01-31',
-      'color': 'Hitam',
-      'km': '1250',
-      'location': 'Surabaya'
-    }];
-
-    this.setState(() { this._data1 = dataObj;});
+    return axis;
   }
 
   @override
   void initState() {
     super.initState();
-
-    this.getData1();
+    Future.delayed(Duration(milliseconds: 100), () {
+      setState(() {
+        _show = true;
+      });
+    });
   }
 
   @override
@@ -238,23 +194,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        height: _dimens.setHeight(150.0),
-                        aspectRatio: 2.0,
-                        enlargeCenterPage: true,
-                        enableInfiniteScroll: true,
-                        initialPage: 0,
-                        autoPlay: true,
-                      ),
-                      items: imageSliders,
-                    )),
-                SizedBox(
-                  height: _dimens.setHeight(15.0),
-                ),
-                Container(
                   padding: EdgeInsets.only(
-                      left: _dimens.setWidth(15.0), right: _dimens.setWidth(15.0)),
+                      left: _dimens.setWidth(15.0),
+                      right: _dimens.setWidth(15.0)),
                   child: Text(
                     'Toyota Innova 2.5V AT \n2015',
                     style: TextStyle(
@@ -262,125 +204,104 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: _dimens.setHeight(20.0),
+                  height: _dimens.setHeight(15.0),
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: _dimens.setWidth(15.0), right: _dimens.setWidth(15.0)),
+                _show ? Container(
+                  padding: EdgeInsets.only(
+                      left: _dimens.setWidth(15.0),
+                      right: _dimens.setWidth(15.0)),
                   child: Echarts(
                     option: '''
-                    {
-                    tooltip: {
+    {
+    tooltip: {
                       backgroundColor: 'rgba(255,255,255,0.7)',
                       formatter: function (param) {
                         var value = param.value;
-
-                        return 'Tanggal : '+value.date+'<br>'
-                        + 'Warna : '+value.color+'<br>'
-                        + 'Price : Rp '+value.price+'<br>'
-                        + 'km : '+value.km+'<br>'
-                        + 'Lokasi : '+value.location+'<br>'
+                        return 'Tanggal : '+value[0]+'<br>'
+                        + 'Price : Rp '+value[1]+'<br>'
+                        + 'Warna : '+value[3]+'<br>'
+                        + 'km : '+value[4]+'<br>'
+                        + 'Lokasi : '+value[5]+'<br>'
                         ;
                       }
                     },
-                      dataset: {
-                        dimensions: ['date', 'price'],
-                        source: ${jsonEncode(_data1)},
-                      },
-                      color: ['#3398DB'],
-                      grid: {
-                        left: '0%',
-                        right: '0%',
-                        bottom: '5%',
-                        top: '10%',
-                        height: '90%',
-                        containLabel: true,
-                        z: 22,
-                      },
-                      xAxis: [{
-                        name: 'Waktu',
-                        type: 'category',
-                        gridIndex: 0,
-                        axisTick: {
-                          show: false,
-                        },
-                        axisLine: {
-                          lineStyle: {
-                            color: '#0c3b71',
-                          },
-                        },
-                        axisLabel: {
-                          show: true,
-                          color: 'rgb(170,170,170)',
-                          formatter: function xFormatter(value, index) {
-                            if (index === 6) {
-                              return `\${value}\\n*`;
-                            }
-                            return value;
-                          },
-                        },
-                      }],
-                      yAxis: {
-                      name: 'Harga',
-                        type: 'value',
-                        gridIndex: 0,
-                        splitLine: {
-                          show: true,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        axisLine: {
-                          lineStyle: {
-                            color: '#0c3b71',
-                          },
-                        },
-                        axisLabel: {
-                          color: 'rgb(170,170,170)',
-                        },
-                        splitNumber: 8,
-                        splitArea: {
-                          show: true,
-                          areaStyle: {
-                            color: ['rgba(250,250,250,0.0)', 'rgba(250,250,250,0.05)'],
-                          },
-                        },
-                      },
-                      series: [{
-                        type: 'scatter',
-                        barWidth: '50%',
-                        xAxisIndex: 0,
-                        yAxisIndex: 0,
-                        itemStyle: {
-                          normal: {
-                            barBorderRadius: 5,
-                            color: {
-                              type: 'linear',
-                              x: 0,
-                              y: 0,
-                              x2: 0,
-                              y2: 1,
-                              colorStops: [
-                                {
-                                  offset: 0, color: '#00feff',
-                                },
-                                {
-                                  offset: 1, color: '#027eff',
-                                },
-                                {
-                                  offset: 1, color: '#0286ff',
-                                },
-                              ],
-                            },
-                          },
-                        },
-                        zlevel: 11,
-                      }],
-                    }
-                  ''',
+      xAxis : [
+        {        
+            name: 'Waktu',
+            type: 'time',
+            axisLabel: {              
+              formatter: {
+              year: '{yyyy}',
+              month: '',
+              day: '',
+              hour: '',
+              minute: '',
+              second: '',
+              millisecond: '',
+              none: '{yyyy}'
+            },                            
+              interval: 1,                
+            },
+        }
+      ],
+      
+      yAxis: {
+        name: 'Harga',
+        type: 'value',
+        scale: false,
+        axisLabel:{
+          formatter: function (value, index) {            
+            return value/1000000;
+          }
+        }
+      },
+      series:
+      [{
+        data: ${jsonEncode(getDatas())},
+        type: 'scatter',
+        symbolSize: 18,
+        zlevel: 11,
+        markPoint: {
+          symbol: 'pin',
+          symbolSize: 20,
+          data: [
+          { name: 'mark', xAxis: "${dataObj[_currentIndex][0].toString()}", yAxis: ${int.parse(dataObj[_currentIndex][1].toString())},
+                  itemStyle: {
+                    color: '#FF0000',
+                  }
+                }]
+        },
+      }]
+      
+    }
+''',
+                    extraScript: '''
+                chart.on('click', (params) => {
+                  if(params.componentType === 'series') {
+                    Messager.postMessage(JSON.stringify({
+                      type: 'select',
+                      payload: params.dataIndex,                                    
+                    }));
+                  }
+                });
+''',
+                    onMessage: (String message) {
+                      jsonDecode(message);
+                      var messageAction =
+                          new Map<String, dynamic>.from(json.decode(message));
+                      if (messageAction['type'] == 'select') {
+                        var index = messageAction["payload"];
+                        _controller.animateToPage(index);
+                      }
+                    },
                   ),
                   width: 300,
                   height: 250,
+                ) : Container(),
+                SizedBox(
+                  height: _dimens.setHeight(20.0),
                 ),
+                carouselWdgt(context),
                 SizedBox(
                   height: _dimens.setHeight(20.0),
                 ),
@@ -390,6 +311,92 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  List<Widget> imageSliders (BuildContext context) {
+    return dataObj
+        .map((item) => GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: (){
+        Get.to(HomeDetailBanner(imgData: item[2], warna: item[3], price: item[1], tanggal: item[0], km: item[4], lokasi: item[5]));
+      },
+      child: Container(
+        margin: EdgeInsets.all(5.0),
+        child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            child: Stack(
+              children: <Widget>[
+                Image.network(item[2],
+                    fit: BoxFit.cover, width: 1000.0),
+                Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(200, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0)
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 20.0),
+                    child: Text(
+                      '${item[3]}',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ),
+    )).toList();
+  }
+
+  Flexible carouselWdgt(BuildContext context) {
+    return Flexible(child: Column(children: [
+      CarouselSlider(
+        items: imageSliders(context),
+        carouselController: _controller,
+        options: CarouselOptions(
+            height: _dimens.setHeight(130.0),
+            aspectRatio: 2.0,
+            enlargeCenterPage: true,
+            enableInfiniteScroll: true,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _currentIndex = index;
+              });
+            }),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: dataObj.asMap().entries.map((entry) {
+          return GestureDetector(
+            onTap: () => _controller.animateToPage(entry.key),
+            child: Container(
+              width: 12.0,
+              height: 12.0,
+              margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: (Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black)
+                      .withOpacity(_currentIndex == entry.key ? 0.9 : 0.4)),
+            ),
+          );
+        }).toList(),
+      ),
+    ]));
   }
 }
 

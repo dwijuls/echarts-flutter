@@ -4,8 +4,12 @@ import 'package:get/get.dart';
 
 class HomeDetailBanner extends StatefulWidget {
   final String? imgData;
-  final String? title;
-  const HomeDetailBanner({Key? key, this.imgData, this.title}) : super(key: key);
+  final String? warna;
+  final String? tanggal;
+  final String? price;
+  final String? km;
+  final String? lokasi;
+  const HomeDetailBanner({Key? key, this.imgData, this.warna, this.tanggal, this.price, this.km, this.lokasi}) : super(key: key);
 
   @override
   _HomeDetailBannerState createState() => _HomeDetailBannerState();
@@ -71,7 +75,7 @@ class _HomeDetailBannerState extends State<HomeDetailBanner> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(left: 20, right: 20, top: 30),
-                          child: Text(widget.title!,
+                          child: Text('Kijang Innova',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Nunito',
@@ -80,10 +84,56 @@ class _HomeDetailBannerState extends State<HomeDetailBanner> {
                           ),
                         ),
                         SizedBox(
-                          height: _dimens.setHeight(20.0),
+                          height: _dimens.setHeight(10.0),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Text('Warna : ${widget.warna}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Nunito',
+                                fontSize: _dimens.setSp(14.0),),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Text('Kilometer : ${widget.km}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Nunito',
+                              fontSize: _dimens.setSp(14.0),),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Text('Tanggal : ${widget.tanggal}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Nunito',
+                              fontSize: _dimens.setSp(14.0),),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Text('Lokasi : ${widget.lokasi}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Nunito',
+                              fontSize: _dimens.setSp(14.0),),
+                          ),
                         ),
                         SizedBox(
                           height: _dimens.setHeight(20.0),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Text('Harga : ${widget.price}',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'Nunito',
+                              fontSize: _dimens.setSp(16.0),
+                            fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ],
                     ),
