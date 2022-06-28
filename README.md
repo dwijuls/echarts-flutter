@@ -1,3 +1,5 @@
+<p align="center"><a href="https://flutter.dev/" target="_blank"><img src="https://storage.googleapis.com/cms-storage-bucket/6a07d8a62f4308d2b854.svg" width="400"></a></p>
+
 # Scatter Echarts Flutter
 
 ## How to Run
@@ -20,3 +22,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Developer Info
+
+Full Name: Krisnadi Dwi Julianto
+Website/Cv: https://dwijuls.github.io/cv
