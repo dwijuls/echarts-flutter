@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                       left: _dimens.setWidth(15.0),
                       right: _dimens.setWidth(15.0)),
                   child: Text(
-                    'Toyota Innova 2.5V AT \n2015',
+                    'Scatter Grafik',
                     style: TextStyle(
                         fontFamily: 'Nunito', fontWeight: FontWeight.bold),
                   ),
