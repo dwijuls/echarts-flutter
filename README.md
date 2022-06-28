@@ -1,6 +1,12 @@
-# djubli_echarts
+# Scatter Echarts Flutter
 
-A new Flutter project.
+## How to Run
+
+- clone this project
+- open this project with Vs Code or Android Studio
+- Run "flutter pub get" on terminal
+- Run "flutter run" on terminal
+- Done
 
 ## Getting Started
 
