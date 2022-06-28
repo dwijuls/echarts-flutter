@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:djubli_echarts/helpers/bottomsheet.dart';
 import 'package:djubli_echarts/helpers/constants.dart';
 import 'package:djubli_echarts/helpers/drawable.dart';
 import 'package:djubli_echarts/ui/home/home_detail_banner.dart';
@@ -124,9 +125,15 @@ class _HomePageState extends State<HomePage> {
                     Positioned(
                       top: _dimens.setHeight(55.0),
                       left: _dimens.setWidth(15.0),
-                      child: Image.asset(
-                        DrawableX.imageAsset(AssetGambar.logo),
-                        width: _dimens.setWidth(110.0),
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: (){
+                          BottomsheetDeveloper().createState().showInfoDeveloper(context, _dimens);
+                        },
+                        child: Image.asset(
+                          DrawableX.imageAsset(AssetGambar.logo),
+                          width: _dimens.setWidth(110.0),
+                        ),
                       ),
                     ),
                     Container(
