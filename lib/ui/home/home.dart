@@ -408,10 +408,3 @@ class _HomePageState extends State<HomePage> {
     ]));
   }
 }
-
-class Items {
-  String? img;
-  String? title;
-
-  Items({this.img, this.title});
-}
