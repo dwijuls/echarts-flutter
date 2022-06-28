@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   getDatas() {
     var axis = [];
     dataObj.forEach((element) {
-      axis.add([element[0], element[1]]);
+      axis.add([element[0], element[1], element[2], element[3], element[4], element[5]]);
     });
 
     return axis;
@@ -244,7 +244,9 @@ class _HomePageState extends State<HomePage> {
             },
         }
       ],
-      
+        dataset: {
+          source: ${jsonEncode(getDatas())},
+        },
       yAxis: {
         name: 'Harga',
         type: 'value',
