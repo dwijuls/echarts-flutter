@@ -2,6 +2,8 @@
 
 # Scatter Echarts Flutter
 
+<a href="https://drive.google.com/file/d/1QG8ALo9tQbt0G80Uqpdj8TbDgUm0GWGF/view?usp=sharing" target="_blank">Download Apps Release</a>
+
 ## How to Run
 
 - clone this project
