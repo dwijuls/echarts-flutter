@@ -370,41 +370,41 @@ class _HomePageState extends State<HomePage> {
     )).toList();
   }
 
-  Flexible carouselWdgt(BuildContext context) {
-    return Flexible(child: Column(children: [
+  Widget carouselWdgt(BuildContext context) {
+    return Column(children: [
       CarouselSlider(
-        items: imageSliders(context),
-        carouselController: _controller,
-        options: CarouselOptions(
-            height: _dimens.setHeight(130.0),
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-            enableInfiniteScroll: true,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            }),
+    items: imageSliders(context),
+    carouselController: _controller,
+    options: CarouselOptions(
+        height: _dimens.setHeight(130.0),
+        aspectRatio: 2.0,
+        enlargeCenterPage: true,
+        enableInfiniteScroll: true,
+        onPageChanged: (index, reason) {
+          setState(() {
+            _currentIndex = index;
+          });
+        }),
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: dataObj.asMap().entries.map((entry) {
-          return GestureDetector(
-            onTap: () => _controller.animateToPage(entry.key),
-            child: Container(
-              width: 12.0,
-              height: 12.0,
-              margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: (Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black)
-                      .withOpacity(_currentIndex == entry.key ? 0.9 : 0.4)),
-            ),
-          );
-        }).toList(),
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: dataObj.asMap().entries.map((entry) {
+      return GestureDetector(
+        onTap: () => _controller.animateToPage(entry.key),
+        child: Container(
+          width: 12.0,
+          height: 12.0,
+          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: (Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black)
+                  .withOpacity(_currentIndex == entry.key ? 0.9 : 0.4)),
+        ),
+      );
+    }).toList(),
       ),
-    ]));
+    ]);
   }
 }
