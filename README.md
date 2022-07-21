@@ -27,5 +27,5 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Developer Info
 
-Full Name: Krisnadi Dwi Julianto
-Website/Cv: https://dwijuls.github.io/cv
+- Full Name: Krisnadi Dwi Julianto
+- Website/Cv: https://dwijuls.github.io/cv
